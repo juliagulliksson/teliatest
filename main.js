@@ -56,8 +56,8 @@ function moveDescription(e) {
   descWidth = parseInt(descWidth, 10);
 
   // Make description tooltip follow mouse position
-  const mouseX = e.clientX,
-    mouseY = e.clientY,
+  const mouseX = e.pageX,
+    mouseY = e.pageY,
     parent_x = imageWrapper.offsetLeft,
     parent_y = imageWrapper.offsetTop,
     positionX = mouseX - parent_x + 5,
