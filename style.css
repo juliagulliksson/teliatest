@@ -2,12 +2,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.wrapper {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   padding: 1rem;
+  flex-direction: column;
+}
+.video-container {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 1rem;
+}
+.video {
+  width: 100%;
+  height: auto;
 }
 
 .posters {

@@ -39,9 +39,13 @@ const posters = [
 ];
 
 const mainDiv = document.getElementById("app");
+const video = document.getElementById("video");
 
 function switchVideo() {
-  console.log(this.dataset.id);
+  if (video.src !== this.dataset.id) {
+    video.src = this.dataset.id;
+    video.play();
+  }
 }
 
 function moveDescription(e) {
