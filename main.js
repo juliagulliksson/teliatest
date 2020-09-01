@@ -41,31 +41,6 @@ const posters = [
 const mainDiv = document.getElementById("app");
 const video = document.getElementById("video");
 
-function switchVideo() {
-  if (video.src !== this.dataset.id) {
-    video.src = this.dataset.id;
-    video.play();
-  }
-}
-
-function moveDescription(e) {
-  const description = this.querySelector("span.description");
-  const imageWrapper = this.querySelector("div.image-wrapper");
-  let compStyles = window.getComputedStyle(description);
-  let descWidth = compStyles.getPropertyValue("width");
-  descWidth = parseInt(descWidth, 10);
-
-  // Make description tooltip follow mouse position
-  const mouseX = e.pageX,
-    mouseY = e.pageY,
-    parent_x = imageWrapper.offsetLeft,
-    parent_y = imageWrapper.offsetTop,
-    positionX = mouseX - parent_x + 5,
-    positionY = mouseY - parent_y + 5;
-  description.style.top = positionY + "px";
-  description.style.left = positionX + "px";
-}
-
 function displayPosters() {
   const postersWrapper = document.getElementById("posters");
 
@@ -87,6 +62,56 @@ function displayPosters() {
     postersWrapper.appendChild(posterDiv);
   }
   mainDiv.appendChild(postersWrapper);
+}
+
+function moveDescription(e) {
+  const description = this.querySelector("span.description");
+  const imageWrapper = this.querySelector("div.image-wrapper");
+  let descWidth = description.offsetWidth;
+  let descHeight = description.offsetHeight;
+  let wrapperWidth = imageWrapper.offsetWidth;
+  let wrapperHeight = imageWrapper.offsetHeight;
+
+  descWidth = parseInt(descWidth, 10);
+  descHeight = parseInt(descHeight, 10);
+
+  const mouseX = e.pageX,
+    mouseY = e.pageY,
+    parentX = imageWrapper.offsetLeft,
+    parentY = imageWrapper.offsetTop;
+
+  let positionX = mouseX - parentX + 5,
+    positionY = mouseY - parentY + 5;
+
+  // Change description position based on mouse movement and imageWrapper height&width
+  if (positionX < wrapperWidth / 2 || window.innerWidth > 800) {
+    if (positionY < wrapperHeight / 2) {
+      description.style.top = positionY + "px";
+      description.style.left = positionX + "px";
+    } else {
+      positionY = mouseY - parentY - 5;
+      description.style.top = positionY - descHeight + "px";
+      description.style.left = positionX + "px";
+    }
+  } else {
+    if (positionY < wrapperHeight / 2) {
+      positionX = mouseX - parentX - 5;
+      description.style.top = positionY + "px";
+      description.style.left = positionX - descWidth + "px";
+    } else {
+      positionY = mouseY - parentY - 5;
+      positionX = mouseX - parentX - 5;
+      description.style.top = positionY - descHeight + "px";
+      description.style.left = positionX - descWidth + "px";
+    }
+  }
+}
+
+function switchVideo() {
+  if (video.src !== this.dataset.id) {
+    video.src = this.dataset.id;
+    video.play();
+  }
 }
 
 displayPosters();

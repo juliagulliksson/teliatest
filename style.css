@@ -10,11 +10,13 @@ body {
   padding: 1rem;
   flex-direction: column;
 }
+
 .video-container {
   width: 100%;
   max-width: 800px;
   margin-bottom: 1rem;
 }
+
 .video {
   width: 100%;
   height: auto;
@@ -52,13 +54,13 @@ body {
 
 .image-wrapper .description {
   position: absolute;
-  background-color: #ffffff;
+  background-color: #fff;
   top: 0;
   right: 0;
-  opacity: 0.85;
+  opacity: 0.9;
   width: 300px;
   z-index: 900;
-  padding: 5px 10px;
+  padding: 10px 15px;
   border-radius: 5px;
 }
 
